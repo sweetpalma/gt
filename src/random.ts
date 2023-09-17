@@ -21,7 +21,9 @@ export const randomTable = (keys: Array<string>, values: Array<string>) => {
 	const matrix = randomOrder(Math.max(keys.length, values.length));
 	return matrix.map((order) => {
 		const map = {} as Record<string, string>;
-		order.slice(0, keys.length).forEach((x, y) => map[keys[y]] = values[x] ?? null);
+		order
+			.slice(0, keys.length)
+			.forEach((x, y) => (map[keys[y]] = values[x] ?? null));
 		return map;
 	});
 };

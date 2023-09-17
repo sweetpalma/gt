@@ -1,24 +1,33 @@
 {
-  "name": "karting",
-  "version": "1.0.0",
-  "description": "",
-  "source": "src/index.html",
-  "scripts": {
-    "serve": "parcel",
-    "build:pages": "npm run build -- --public-url ./",
-    "build": "parcel build"
-  },
-  "author": "SweetPalma",
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.21",
-    "parcel": "^2.9.3",
-    "sass": "^1.67.0",
-    "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.3",
-    "@parcel/transformer-vue": "^2.9.3",
-    "@types/lodash": "^4.14.198"
-  }
+	"name": "karting",
+	"author": "SweetPalma",
+	"license": "MIT",
+	"version": "1.0.0",
+	"source": "src/index.html",
+	"scripts": {
+		"prepare": "husky install",
+		"serve": "parcel",
+		"start": "npm run serve",
+		"build:pages": "npm run build -- --public-url ./",
+		"build": "parcel build",
+		"format-check": "prettier '**/*.{vue,ts,scss,html,yml,json}' --check",
+		"format": "prettier '**/*.{vue,ts,scss,html,yml,json}' --write"
+	},
+	"dependencies": {
+		"husky": "^8.0.3",
+		"lint-staged": "^14.0.1",
+		"lodash": "^4.17.21",
+		"parcel": "^2.9.3",
+		"prettier": "^3.0.3",
+		"sass": "^1.67.0",
+		"vue": "^3.3.4"
+	},
+	"devDependencies": {
+		"@parcel/transformer-sass": "^2.9.3",
+		"@parcel/transformer-vue": "^2.9.3",
+		"@types/lodash": "^4.14.198"
+	},
+	"lint-staged": {
+		"**/*.{vue,ts,scss,html,yml,json}": "prettier --write"
+	}
 }

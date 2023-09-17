@@ -28,10 +28,13 @@ const computeTable = () => {
 };
 
 const saveState = () => {
-	localStorage.setItem('state', JSON.stringify({
-		pilots: pilots.value,
-		karts: karts.value,
-	}));
+	localStorage.setItem(
+		'state',
+		JSON.stringify({
+			pilots: pilots.value,
+			karts: karts.value,
+		}),
+	);
 };
 
 const loadState = () => {
@@ -43,17 +46,21 @@ const loadState = () => {
 const wipeState = () => {
 	pilots.value = [];
 	karts.value = [];
-}
-
-watch([karts, pilots], () => {
-	computeTable();
-	saveState();
-}, { deep: true });
+};
 
 onMounted(() => {
 	computeTable();
 	loadState();
 });
+
+watch(
+	[karts, pilots],
+	() => {
+		computeTable();
+		saveState();
+	},
+	{ deep: true },
+);
 </script>
 
 <template>
@@ -61,24 +68,32 @@ onMounted(() => {
 		<div class="card">
 			<h2>Карти</h2>
 			<div class="pills">
-				<button v-for="kart in karts" class="pills__item" @click="pull(karts, kart)">
+				<button
+					v-for="kart in karts"
+					class="pills__item"
+					@click="pull(karts, kart)"
+				>
 					{{ kart }}
 				</button>
 			</div>
 			<div>
-				<input v-model="kartInput" @keyup.enter="addKart"/>
+				<input v-model="kartInput" @keyup.enter="addKart" />
 				<button @click="addKart">+</button>
 			</div>
 		</div>
 		<div class="card">
 			<h2>Пілоти</h2>
 			<div class="pills">
-				<button v-for="pilot in pilots" class="pills__item" @click="pull(pilots, pilot)">
+				<button
+					v-for="pilot in pilots"
+					class="pills__item"
+					@click="pull(pilots, pilot)"
+				>
 					{{ pilot }}
 				</button>
 			</div>
 			<div>
-				<input v-model="pilotInput" @keyup.enter="addPilot"/>
+				<input v-model="pilotInput" @keyup.enter="addPilot" />
 				<button @click="addPilot">+</button>
 			</div>
 		</div>
@@ -87,9 +102,7 @@ onMounted(() => {
 				<table>
 					<thead>
 						<th>Хіт / Заїзд</th>
-						<th v-for="(_, index) in table">
-							№{{ index + 1 }}
-						</th>
+						<th v-for="(_, index) in table">№{{ index + 1 }}</th>
 					</thead>
 					<tbody>
 						<tr v-for="pilot in pilots">
@@ -101,12 +114,8 @@ onMounted(() => {
 					</tbody>
 				</table>
 			</div>
-			<button class="control" @click="computeTable">
-				Перемішати
-			</button>
-			<button class="control" @click="wipeState">
-				Очистити
-			</button>
+			<button class="control" @click="computeTable">Перемішати</button>
+			<button class="control" @click="wipeState">Очистити</button>
 		</div>
 	</div>
 </template>
@@ -123,7 +132,7 @@ $app-width: 800px;
 	padding: 1em;
 	border-radius: 5px;
 	margin-bottom: 1em;
-	background: #FFF;
+	background: #fff;
 	overflow: hidden;
 }
 
@@ -171,10 +180,10 @@ $app-width: 800px;
 	th,
 	td {
 		width: 80px;
-	  overflow: hidden;
+		overflow: hidden;
 		padding: 0.25em 0.75em;
 		white-space: nowrap;
-	  text-overflow: ellipsis;
+		text-overflow: ellipsis;
 		text-align: center;
 	}
 }
